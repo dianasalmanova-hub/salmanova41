@@ -23,6 +23,8 @@ namespace salmanova41
         public ProductPage()
         {
             InitializeComponent();
+            var currentProduct = Salmanova41Entities.GetContext().Product.ToList();
+            ProductListView.ItemsSource = currentProduct;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

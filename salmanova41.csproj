@@ -166,6 +166,17 @@
     <Resource Include="pic\icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="товар_import\B320R5.jpg" />
+    <Resource Include="товар_import\D329H3.jpg" />
+    <Resource Include="товар_import\D572U8.jpg" />
+    <Resource Include="товар_import\F572H7.jpg" />
+    <Resource Include="товар_import\F635R4.jpg" />
+    <Resource Include="товар_import\G432E4.jpg" />
+    <Resource Include="товар_import\G783F5.jpg" />
+    <Resource Include="товар_import\H782T5.jpg" />
+    <Resource Include="товар_import\J384T6.jpg" />
+    <Resource Include="товар_import\А112Т4.jpg" />
+    <Resource Include="pic\picture.png" />
     <Content Include="SalmanovaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>SalmanovaModel.Context.cs</LastGenOutput>

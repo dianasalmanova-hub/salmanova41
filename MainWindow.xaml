@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:salmanova41"
         mc:Ignorable="d"
-        Title="Сальманова41" Height="450" Width="800" FontFamily="Comic Sans MS" Icon="pic/icon.ico">
+        Title="Сальманова41" Height="450" Width="1400" FontFamily="Comic Sans MS" Icon="pic/icon.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
@@ -14,6 +14,7 @@
         </Grid.RowDefinitions>
         <Image Source="pic/logo.png" HorizontalAlignment="Left"></Image>
         <TextBlock Text="41 размер" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+
         <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden"></Frame>
         <Button Content="Назад" Name="BtnBack" Width="175" Height="30" HorizontalAlignment="Right" Click="BtnBack_Click"></Button>
     </Grid>
