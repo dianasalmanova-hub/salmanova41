@@ -11,8 +11,7 @@ namespace salmanova41
 {
     using System;
     using System.Collections.Generic;
-    using System.Windows.Controls.Primitives;
-
+    
     public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,13 +31,14 @@ namespace salmanova41
         public byte ProductDiscountAmount { get; set; }
         public int ProductQuantityInStock { get; set; }
         public string ProductDescription { get; set; }
-        public string ProductPhoto {  get; set; }
-        public string ProductPhotoPath 
-        { 
+        public string ProductPhoto { get; set; }
+        public string ProductPhotoPath
+        {
             get
             {
                 if (ProductPhoto == null)
                     return null;
+
                 return "товар_import/" + ProductPhoto;
             }
         }

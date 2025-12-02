@@ -8,7 +8,46 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductPage"  FontFamily="Comic Sans MS">
     <Grid>
-        <ListView Name="ProductListView">
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Bottom">
+            <TextBlock FontSize="15" Name="TBProductCountRecords"></TextBlock>
+            <TextBlock Text=" из " FontSize="15"></TextBlock>
+            <TextBlock FontSize="15" Name="TBProductCountMaxRecords"></TextBlock>
+        </StackPanel>
+
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="поиск по наименованию" FontSize="15"></TextBlock>
+                <TextBox Name="TBoxSearch" TextChanged="TBoxSearch_TextChanged"
+                     Width="300" FontSize="17" Margin="5"></TextBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Vertical" Margin="5">
+                <RadioButton Content="По возрастанию стоимости" GroupName="Sort" Width="300" FontSize="20"
+                         Checked="RButtonUp_Checked" Name="RButtonUp"></RadioButton>
+                <RadioButton Content="По убыванию стоимости" GroupName="Sort" Width="300" FontSize="20"
+                         Checked="RButtonDown_Checked"  Name="RButtonDown"></RadioButton>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <TextBlock Text="сортировка по скидке" FontSize="15"></TextBlock>
+                <ComboBox Height="25" Name="ComboFilter" SelectionChanged="ComboFilter_SelectionChanged"
+                      FontSize="15" Width="250" Margin="5">
+                    <TextBlock>все диапазоны</TextBlock>
+                    <TextBlock>0 - 9,99%</TextBlock>
+                    <TextBlock>10 - 14,99%</TextBlock>
+                    <TextBlock>15% и более</TextBlock>
+                </ComboBox>
+            </StackPanel>
+
+        </WrapPanel>
+        <ListView Name="ProductListView" Grid.Row="2" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -27,7 +66,8 @@
                             <Image.Source>
                                 <Binding Path="ProductPhotoPath">
                                     <Binding.TargetNullValue>
-                                        <ImageSource>/pic/picture.png</ImageSource>
+                                        <ImageSource>pic/picture.png</ImageSource>
+
                                     </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>

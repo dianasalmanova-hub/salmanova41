@@ -16,12 +16,14 @@ namespace salmanova41
     public partial class Salmanova41Entities : DbContext
     {
         private static Salmanova41Entities _context;
+
         public static Salmanova41Entities GetContext()
         {
             if (_context == null)
                 _context = new Salmanova41Entities();
             return _context;
         }
+
         public Salmanova41Entities()
             : base("name=Salmanova41Entities")
         {
@@ -37,6 +39,7 @@ namespace salmanova41
         public virtual DbSet<PickUpPoint> PickUpPoint { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

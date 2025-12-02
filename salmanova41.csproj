@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -94,6 +94,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalmanovaModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>SalmanovaModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs">
       <DependentUpon>SalmanovaModel.tt</DependentUpon>
     </Compile>
@@ -143,6 +146,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -155,9 +159,6 @@
     <None Include="SalmanovaModel.edmx.diagram">
       <DependentUpon>SalmanovaModel.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="pic\logo.png" />
@@ -177,19 +178,21 @@
     <Resource Include="товар_import\J384T6.jpg" />
     <Resource Include="товар_import\А112Т4.jpg" />
     <Resource Include="pic\picture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="SalmanovaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SalmanovaModel.Context.cs</LastGenOutput>
       <DependentUpon>SalmanovaModel.edmx</DependentUpon>
+      <LastGenOutput>SalmanovaModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="SalmanovaModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SalmanovaModel.edmx</DependentUpon>
       <LastGenOutput>SalmanovaModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
