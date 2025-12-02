@@ -36,7 +36,7 @@
                          Checked="RButtonDown_Checked"  Name="RButtonDown"></RadioButton>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical">
-                <TextBlock Text="сортировка по скидке" FontSize="15"></TextBlock>
+                <TextBlock Text="фильтрация по скидке" FontSize="15"></TextBlock>
                 <ComboBox Height="25" Name="ComboFilter" SelectionChanged="ComboFilter_SelectionChanged"
                       FontSize="15" Width="250" Margin="5">
                     <TextBlock>все диапазоны</TextBlock>
