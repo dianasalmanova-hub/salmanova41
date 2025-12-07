@@ -1,23 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using salmanova41;
 
 namespace salmanova41
 {
-    /// <summary>
-    /// Логика взаимодействия для ProductPage.xaml
-    /// </summary>
     public partial class ProductPage : Page
     {
         public ProductPage()
@@ -25,8 +14,7 @@ namespace salmanova41
             InitializeComponent();
             var currentProduct = Salmanova41Entities.GetContext().Product.ToList();
             ProductListView.ItemsSource = currentProduct;
-            ComboFilter.SelectedIndex = 0;
-            UpdateProducts();
+            UpdateProduct();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -34,71 +22,66 @@ namespace salmanova41
             Manager.MainFrame.Navigate(new AddEditPage());
         }
 
-        private void UpdateProducts()
+        private void UpdateProduct()
         {
-            var currentProduct = Salmanova41Entities.GetContext().Product.ToList();
+            var currentProducts = Salmanova41Entities.GetContext().Product.ToList();
 
-            if (ComboFilter.SelectedIndex == 0)
+            if (ComboFilter.SelectedIndex == 0) 
             {
-                currentProduct = currentProduct.Where(p => (Convert.ToInt32(p.ProductDiscountAmount) >= 0)).ToList();
+                currentProducts = currentProducts.Where(p => p.ProductDiscountAmount >= 0 && p.ProductDiscountAmount <= 100).ToList();
             }
-            if (ComboFilter.SelectedIndex == 1)
+            if (ComboFilter.SelectedIndex == 1) 
             {
-                currentProduct = currentProduct.Where(p => (Convert.ToInt32(p.ProductDiscountAmount) >= 0 && Convert.ToInt32(p.ProductDiscountAmount) <= 9.99)).ToList();
+                currentProducts = currentProducts.Where(p => p.ProductDiscountAmount >= 0 && p.ProductDiscountAmount <= 9.99).ToList();
             }
-            if (ComboFilter.SelectedIndex == 2)
+            if (ComboFilter.SelectedIndex == 2) 
             {
-                currentProduct = currentProduct.Where(p => (Convert.ToInt32(p.ProductDiscountAmount) >= 10 && Convert.ToInt32(p.ProductDiscountAmount) <= 14.99)).ToList();
+                currentProducts = currentProducts.Where(p => p.ProductDiscountAmount >= 10 && p.ProductDiscountAmount <= 14.99).ToList();
             }
-            if (ComboFilter.SelectedIndex == 3)
+            if (ComboFilter.SelectedIndex == 3) 
             {
-                currentProduct = currentProduct.Where(p => (Convert.ToInt32(p.ProductDiscountAmount) >= 15)).ToList();
+                currentProducts = currentProducts.Where(p => p.ProductDiscountAmount >= 15 && p.ProductDiscountAmount <= 100).ToList();
             }
 
-            //поиск
-            currentProduct = currentProduct.Where(p => p.ProductName.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
+            // Поиск 
+            currentProducts = currentProducts.Where(p => p.ProductName.ToLower().Contains(TBoxSearch.Text.ToLower())).ToList();
 
-            //сорт
+            // Сортировка
+            if (RButtonUp.IsChecked.Value)
+            {
+                currentProducts = currentProducts.OrderBy(p => p.ProductCost).ToList();
+            }
             if (RButtonDown.IsChecked.Value)
             {
-                ProductListView.ItemsSource = currentProduct.OrderByDescending(p => p.ProductCost).ToList();
-            }
-            else if (RButtonUp.IsChecked.Value)
-            {
-                ProductListView.ItemsSource = currentProduct.OrderBy(p => p.ProductCost).ToList();
-            }
-            else
-            {
-                ProductListView.ItemsSource = currentProduct.ToList();
+                currentProducts = currentProducts.OrderByDescending(p => p.ProductCost).ToList();
             }
 
-            //!!!
-            int ProductcountRecords = currentProduct.Count; 
-            TBProductCountRecords.Text = ProductcountRecords.ToString();
+            ProductListView.ItemsSource = currentProducts;
 
-            //всего кол-во
-            int totalCount = Salmanova41Entities.GetContext().Product.Count();
-            TBProductCountMaxRecords.Text = totalCount.ToString();
+            var allProducts = Salmanova41Entities.GetContext().Product.Count();
+
+            
+            TBProductCountRecords.Text = $"{currentProducts.Count} из {allProducts} по наименованию";
         }
 
         private void ComboFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateProducts();
+            UpdateProduct();
         }
 
         private void TBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            UpdateProducts();
-        }
-
-        private void RButtonDown_Checked(object sender, RoutedEventArgs e)
-        {
-            UpdateProducts();
+            UpdateProduct();
         }
 
         private void RButtonUp_Checked(object sender, RoutedEventArgs e)
         {
-            UpdateProducts();
+            UpdateProduct();
+        }
+
+        private void RButtonDown_Checked(object sender, RoutedEventArgs e)
+        {
+            UpdateProduct();
         }
     }
 }
